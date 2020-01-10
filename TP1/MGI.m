@@ -1,7 +1,5 @@
 function q = MGI(Xd, q0, k_max, epsilon_x, alpha_step)
 %% Modèle Géométrique Inverse (MGI) par la matrice 
-% Autheur : Gabriel H. Riqueti
-% 
 % Arguments :
 %
 % Xd           - position opérationelle désirée

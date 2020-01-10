@@ -7,7 +7,7 @@ function [J] = CalculJacobienne(alpha, d, theta, r)
 % theta         - 
 % r             -
 m = 6;
-n = length(alpha);
+n = 6;
 J = zeros(m,n);
 Z = [0;0;1];
 g_init_i = eye(4,4);
@@ -19,7 +19,7 @@ for i=1:n
     p = g_i_end(1:3,4);
     R = g_init_i(1:3,1:3);
     J(i,1:3) = R*cross(Z,p);
-    J(i,4:6) = R*Z
+    J(i,4:6) = R*Z;
 end
 
 end

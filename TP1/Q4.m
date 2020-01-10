@@ -3,7 +3,7 @@
 % Script 4 - Q4
 
 % Vecteur de Position
-P_0E = g_0E[1:3,4];
+P_0E = g_0E(1:3,4);
 R_0E = g_0E(1:3, 1:3);
 
 % Slide 52
