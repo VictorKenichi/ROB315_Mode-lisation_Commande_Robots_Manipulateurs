@@ -1,7 +1,11 @@
 % Question 3 : 
 
 % Script 3 - Main Function
-rE  = 0.1;
+clear;
+clc;
 
-g_6E = CalculTransformation(0,0,0,rE); 
-g_0E = g_06 * g_6E;
+[alpha, d, theta, r] = InitValuesTP1();
+
+g_0E = CalculMGD(alpha, d, theta, r);
+
+
