@@ -1,4 +1,3 @@
-% Script 2 - 
 function [g_0E] = CalculMGD(alpha, d, theta, r)
 
 g_0E     = eye(4);
