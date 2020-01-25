@@ -1,5 +1,6 @@
 function VisualisationRepere(q)
-%%%
+%%% Affiche le repère de la base fixe 0 en noir et le repère du organe
+%%% terminale E en vert
 % Arguments :
 % q           - coordonnées articulaires
 
@@ -39,6 +40,9 @@ plot3([j0(1,1)],[j0(2,1)],[j0(3,1)],'kv');
 plot3([pE(1,1),k0(1,1)],[pE(2,1),k0(2,1)],[pE(3,1),k0(3,1)],'g-');
 plot3([k0(1,1)],[k0(2,1)],[k0(3,1)],'ks');
 plot3([pE(1,1)],[pE(2,1)],[pE(3,1)],'ko');
+xlabel('x')
+ylabel('y')
+zlabel('z')
 hold off
 
 end
