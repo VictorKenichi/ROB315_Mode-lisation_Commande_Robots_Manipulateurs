@@ -1,12 +1,14 @@
-% Script 5
+% Script 7
 
 clear;
 clc;
 
 qi = [-pi/2; 0;    -pi/2; -pi/2; -pi/2; -pi/2];
 qf = [0;     pi/4; 0;     pi/2;   pi/2; 0];
+dq_dt = [0.5; 1.0; -0.5; 0.5; 1.0; -0.5];
 
-VisualisationRepere(qi)
+ChampsdeVitesse(qi, dq_dt)
 hold on
 
-VisualisationRepere(qf)
+ChampsdeVitesse(qf, dq_dt)
+hold off
