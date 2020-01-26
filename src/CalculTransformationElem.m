@@ -8,8 +8,6 @@ function [gi] = CalculTransformationElem(alpha_i, d_i, theta_i, r_i)
 % Sortie :
 % gi           - 4x4 - matrice de transformation homogène
 
-% Olhar pagina 10 apostila para fazer melhor
-
 gi = [cos(theta_i),              -sin(theta_i),             0,            d_i;
       cos(alpha_i)*sin(theta_i), cos(alpha_i)*cos(theta_i), -sin(alpha_i), -r_i*sin(alpha_i);
       sin(alpha_i)*sin(theta_i), sin(alpha_i)*cos(theta_i), cos(alpha_i), r_i*cos(alpha_i);
