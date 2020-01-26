@@ -1,6 +1,12 @@
 function [alpha, d, theta, r] = InitValuesTP1(q)
-%% Crée la matrice de paramètres du robot
-%  Argument : q coordonnées articulaires
+%%% Crée la matrice de paramètres du robot
+% Arguments :
+% q           - 6x1 - coordonnées articulaires
+% Sortie :
+% alpha       - 7x1 - angles autour de l’axe Xi?1 entre les axes Zi?1 et Zi ;
+% d           - 7x1 - distances le long de l’axe Xi?1 entre les axes Zi?1 et Zi ;
+% theta       - 7x1 -  angles autour de l’axe Zi entre les axes Xi?1 et Xi.
+% r           - 7x1 - distances le long de l’axe Zi entre les axes Xi?1 et Xi ;
 
 d3 = 0.7;
 r1 = 0.5;
