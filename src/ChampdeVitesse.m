@@ -1,7 +1,10 @@
-function ChampdeVitesse(q)
+function [U,S] = ChampdeVitesse(q)
 %%% Afficher le champ de vitesse du organe terminale
 % Arguments :
-% q           - coordonnées articulaires
+% q           - 6x1 - coordonnées articulaires
+% Sortie :
+% U           - 3x3 - chaque colonne est une direction de vitesse
+% S           - 3x3 - importance de la vitesse en chaque direction
 
 npoints = 30; % racine du nombre de points de la surface du ellipsoid
 

@@ -1,0 +1,12 @@
+
+clear;
+clc;
+
+V  = 1;                                                  % 1 m/s
+Te = 1;                                                  % 1 ms
+qi = [-pi/2; 0;    -pi/2; -pi/2; -pi/2; -pi/2];          % coordonnées articulaires initiales
+
+
+qd = MCI(Xdi, Xdf, V, Te, qi);
+
+[l, c] = ;
