@@ -1,11 +1,15 @@
-function VisualisationRepere(q)
+function VisualisationRepere(q, n)
 %%% Affiche le repère de la base fixe 0 en noir et le repère du organe
 %%% terminale E en vert
 % Arguments :
-% q           - coordonnées articulaires
+% q           - 6x1 - coordonnées articulaires
+% n           - taille du vecteur de repères
 
 if nargin < 1
     q = zeros(1,6);
+    n = 1;
+elseif nargin < 2
+    n = 1;
 end
 
 [alpha, d, theta, r] = InitValuesTP1(q);
@@ -14,9 +18,9 @@ g0E = CalculMGD(alpha, d, theta, r);
 
 pE = g0E(1:3,4);
 
-iE = [1;0;0;1];
-jE = [0;1;0;1];
-kE = [0;0;1;1];
+iE = [n;0;0;1];
+jE = [0;n;0;1];
+kE = [0;0;n;1];
 
 i0 = g0E*iE;
 j0 = g0E*jE;

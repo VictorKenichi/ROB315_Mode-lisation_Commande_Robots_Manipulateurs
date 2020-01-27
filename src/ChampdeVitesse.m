@@ -49,7 +49,7 @@ end
 surf(xelps, yelps, zelps, 'EdgeColor', 'interp', 'FaceColor', 'none')
 hold on;
 % Afficher les repères de base et du organe terminale
-VisualisationRepere(q)
+VisualisationRepere(q, 0.1)
 hold off;
 
 end

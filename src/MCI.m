@@ -11,19 +11,28 @@ function qd = MCI(Xdi, Xdf, V, Te, qi)
 % qd          - 6xn - coordonnées articulaires désirées
 
 %% Paramètres :
-ex = 1e-3;
-alpha_step = 5e-3;
-kmax = 100;
+epsilon_x = 1e-3;
+alpha_step = 1e-4;
+kmax = 10000;
 
-dX = (Xdf - Xdi)/(V*Te);
-n = round((Xdf(1,1) - Xdi(1,1))/dX(1,1));
-qd = zeros(len(q0),nt);
+n = round(norm(Xdf - Xdi)/(V*Te));
+dX = ((Xdf - Xdi)*(V*Te))/norm(Xdf - Xdi);
+qd = zeros(length(qi),n);
+Xd = zeros(3,n);
 qd(:,1) = qi;
-Xd = Xdi;
+Xd(:,1) = Xdi;
+error = zeros(n);
+time = 1:n;
 for i = 2:n
-    Xd = Xd + dX;
-    qd(:,i) = MGI(Xd, qd(:,i-1), kmax, ex, alpha_step);
+    Xd(:,i) = Xd(:,i-1) + dX;
+    qd(:,i) = MGI(Xd(:,i), qd(:,i-1), kmax, epsilon_x, alpha_step);
+    [alpha, d, theta, r] = InitValuesTP1(qd(:,i));
+    g0E = CalculMGD(alpha, d, theta, r);
+    Xd_hat = g0E(1:3,4);
+    error(i) = norm(Xd_hat(:,1) - Xd(:,i));
 end
 
+figure(1)
+plot(error);
 
 end
