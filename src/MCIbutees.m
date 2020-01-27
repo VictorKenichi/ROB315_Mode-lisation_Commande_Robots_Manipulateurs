@@ -51,7 +51,7 @@ for i = 2:n
     error(i) = norm(Xd_hat(:,1) - Xd(:,i));
 end
 
-figure(1)
-plot(error);
+% figure(1)
+% plot(error);
 
 end

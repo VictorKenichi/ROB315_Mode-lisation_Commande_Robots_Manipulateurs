@@ -27,11 +27,13 @@ qd = MCIbutees(Xdi, Xdf, V, Te, qi, q_min, q_max);
 [~, n] = size(qd);
 
 figure()
-VisualisationRepere(qd(:,1), 0.01)
+VisualisationRepere(qd(:,1), 0.1, 'i')
 hold on
 VisualisationChaine(qd(:,1))
 hold on
-plot3([Xdi(1,1)],[Xdi(2,1)],[Xdi(3,1)],'ro')
+title('Trajectoire rectiligne du robot 6R')
+plot3([Xdi(1,1)],[Xdi(2,1)],[Xdi(3,1)],'r*')
+text([Xdi(1,1)],[Xdi(2,1)],[Xdi(3,1)], '     X_{di}')
 t = 1:n;
 t = t*Te;
 
@@ -46,11 +48,12 @@ for i = 1:n
     end
 end
 
-VisualisationRepere(qd(:,n), 0.01)
+VisualisationRepere(qd(:,n), 0.1, 'f')
 hold on
 VisualisationChaine(qd(:,n))
 hold on
-plot3([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)],'ro')
+plot3([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)],'g*')
+text([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)], '     X_{df}')
 hold off
 
 figure()
@@ -65,5 +68,3 @@ for i = 1:length(qi)
     legend()
     hold off
 end
-
-

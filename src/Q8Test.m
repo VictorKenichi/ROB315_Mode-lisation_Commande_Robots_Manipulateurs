@@ -54,7 +54,8 @@ VisualisationRepere(qf, 0.01)
 hold on
 VisualisationChaine(qf)
 hold on
-plot3([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)],'rh')
-hold on
-plot3([Xd(1,1)],[Xd(2,1)],[Xd(3,1)],'ro')
+plot3([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)],'r*')
+plot3([Xd(1,1)],[Xd(2,1)],[Xd(3,1)],'g*')
+text([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)], '  X_{df}')
+text([Xd(1,1)],[Xd(2,1)],[Xd(3,1)], '  X_{d}')
 hold off

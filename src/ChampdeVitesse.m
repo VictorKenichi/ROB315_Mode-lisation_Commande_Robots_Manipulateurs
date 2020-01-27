@@ -1,4 +1,4 @@
-function [U,S] = ChampdeVitesse(q)
+function [U,S] = ChampdeVitesse(q, s)
 %%% Afficher le champ de vitesse du organe terminale
 % Arguments :
 % q           - 6x1 - coordonnées articulaires
@@ -10,6 +10,9 @@ npoints = 30; % racine du nombre de points de la surface du ellipsoid
 
 if nargin < 1
     q = zeros(6,1);
+elseif nargin < 2
+    q = zeros(6,1);
+    s = ' ';
 end
 
 [alpha, d, theta, r] = InitValuesTP1(q);
@@ -48,8 +51,11 @@ end
 % Afficher l'ellipsoid
 surf(xelps, yelps, zelps, 'EdgeColor', 'interp', 'FaceColor', 'none')
 hold on;
+% Afficher la chaîne articulaire
+VisualisationChaine(q)
+hold on;
 % Afficher les repères de base et du organe terminale
-VisualisationRepere(q, 0.1)
+VisualisationRepere(q, 0.1, s)
 hold off;
 
 end
