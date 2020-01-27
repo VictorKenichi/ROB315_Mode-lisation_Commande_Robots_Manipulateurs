@@ -8,9 +8,9 @@ dq_dt = [0.5; 1.0; -0.5; 0.5; 1.0; -0.5];
 
 [alpha, d, theta, r] = InitValuesTP1(qi);
 Ji = CalculJacobienne(alpha, d, theta, r);
-dXE_dti = Ji*dq_dt
+dXE_dti = Ji * dq_dt
 
 [alpha, d, theta, r] = InitValuesTP1(qf);
 Jf = CalculJacobienne(alpha, d, theta, r);
-dXE_dtf = Jf*dq_dt
+dXE_dtf = Jf * dq_dt
 

@@ -2,7 +2,7 @@ clear;
 clc;
 
 % Paramètres
-cas = 2;
+cas = 1;
 
 % Cas 1
 if cas == 1
