@@ -8,7 +8,7 @@ G3 = [0; -0.1; 0];
 G4 = [0; 0; 0];
 G5 = [0; 0; 0];
 G6 = [0; 0; 0];
-q = [-pi/2; 0;    -pi/2; -pi/2; -pi/2; -pi/2];
+q = [-pi/2; 0; -pi/2; -pi/2; -pi/2; -pi/2];
 
 [alpha, d, theta, r] = InitValuesTP1(q);
 

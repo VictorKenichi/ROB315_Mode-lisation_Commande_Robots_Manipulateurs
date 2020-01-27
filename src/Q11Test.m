@@ -1,4 +1,4 @@
-% Script Questions 9 et 10
+% Script Question 11
 clear;
 clc;
 
@@ -20,14 +20,13 @@ q_min = [-pi; -pi/2;  -pi;  -pi; -pi/2;  -pi];           % coordonnées articulai
 q_max = [  0;  pi/2; pi/2; pi/2;  pi/2; pi/2];           % coordonnées articulaires maximales
 
 %% Calculate consignes qd
-qd = MCI(Xdi, Xdf, V, Te, qi);
+qd = MCIbutees(Xdi, Xdf, V, Te, qi, q_min, q_max);
 
 
 %% Afficher la trajectoire
 [~, n] = size(qd);
 
 figure()
-title('Trajectoire rectiligne du robot 6R')
 VisualisationRepere(qd(:,1), 0.01)
 hold on
 VisualisationChaine(qd(:,1))
@@ -66,3 +65,5 @@ for i = 1:length(qi)
     legend()
     hold off
 end
+
+

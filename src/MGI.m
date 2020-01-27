@@ -1,4 +1,4 @@
-function qf = MGI(Xd, q0, kmax, epsilon_x, alpha_step)
+function qf = MGI(Xd, q0, k_max, epsilon_x, alpha_step)
 %% Modèle Géométrique Inverse (MGI) par la matrice 
 % Arguments :
 % Xd           - 3x1 - Position opérationelle désirée 3x1
@@ -18,7 +18,7 @@ fp   = g0E(1:3, 4);
 k = 0;
 q = q0;
 
-while(norm(J') > epsilon_x && k < kmax)
+while(norm(J') > epsilon_x && k < k_max)
 % while(norm(Xd - fp) > epsilon_x && k < kmax)
     k  = k + 1;
     % Méthode du Gradient
