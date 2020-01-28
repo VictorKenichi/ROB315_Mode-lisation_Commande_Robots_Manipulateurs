@@ -16,7 +16,7 @@ alpha_step = 5e-4;
 k_max = 1000;
 
 n = round(norm(Xdf - Xdi)/(V*Te));
-dX = ((Xdf - Xdi)*(V*Te))/norm(Xdf - Xdi);
+dX_dt = ((Xdf - Xdi) * V)/norm(Xdf - Xdi);
 qd = zeros(length(qi),n);
 Xd = zeros(3,n);
 qd(:,1) = qi;
@@ -24,15 +24,11 @@ Xd(:,1) = Xdi;
 error = zeros(n);
 
 for i = 2:n
-    Xd(:,i) = Xd(:,i-1) + dX;
+    Xd(:,i) = Xd(:,i-1) + dX_dt * Te;
     qd(:,i) = MGI(Xd(:,i), qd(:,i-1), k_max, epsilon_x, alpha_step);
     [alpha, d, theta, r] = InitValuesTP1(qd(:,i));
     g0E = CalculMGD(alpha, d, theta, r);
     Xd_hat = g0E(1:3,4);
-    error(i) = norm(Xd_hat(:,1) - Xd(:,i));
 end
-
-% figure(1)
-% plot(error);
 
 end

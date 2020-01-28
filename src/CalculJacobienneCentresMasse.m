@@ -5,7 +5,9 @@ function [JvG, JwG] = CalculJacobienneCentresMasse(q)
 % q           - 6x1 - coordonnées articulaires
 % Sortie :
 % JvG       - 18x6 - matrice Jacobienne de vitesse des centres de masse Gis
+%           - JvGi - 3x6 - matrice Jacobienne de vitesse du centre de masse Gi
 % JwG       - 18x6 - matrice Jacobienne de vitesse de rotation des Cis
+%           - JwGi - 3x6 - matrice Jacobienne de vitesse de rotation de Ci
 
 %% Définition des centre de masse par rapport le repère Ri du corps Ci
 G = zeros(3,6);

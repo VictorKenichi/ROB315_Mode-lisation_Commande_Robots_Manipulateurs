@@ -20,7 +20,7 @@ q_min = [-pi; -pi/2;  -pi;  -pi; -pi/2;  -pi];           % coordonnées articulai
 q_max = [  0;  pi/2; pi/2; pi/2;  pi/2; pi/2];           % coordonnées articulaires maximales
 
 %% Calculate consignes qd
-qd = MCIbutees(Xdi, Xdf, V, Te, qi, q_min, q_max);
+qd = MCIbutees(Xdi, Xdf, V, Te, qi, q_min, q_max, 1000);
 
 
 %% Afficher la trajectoire
@@ -35,13 +35,20 @@ title('Trajectoire rectiligne du robot 6R')
 plot3([Xdi(1,1)],[Xdi(2,1)],[Xdi(3,1)],'r*')
 text([Xdi(1,1)],[Xdi(2,1)],[Xdi(3,1)], '     X_{di}')
 t = 1:n;
-t = t*Te;
+t = t * Te;
+Xd_hat = zeros(3,n);
+Xd = zeros(3,n);
+dX_dt = V * (Xdf - Xdi) / norm(Xdf - Xdi);
+erreur = zeros(1,n);
 
 for i = 1:n
+    [alpha, d, theta, r] = InitValuesTP1(qd(:,i));
+    g0E = CalculMGD(alpha, d, theta, r);
+    pE = g0E(1:3,4);
+    Xd_hat(:,i) = pE;
+    Xd(:,i) = Xdi + dX_dt * (t(i) - Te);
+    erreur(i) = norm(Xd(:,i) - Xd_hat(:,i));
     if (mod(i,30) == 0)
-        [alpha, d, theta, r] = InitValuesTP1(qd(:,i));
-        g0E = CalculMGD(alpha, d, theta, r);
-        pE = g0E(1:3,4);
         VisualisationChaine(qd(:,i))
         hold on
         plot3([pE(1,1)],[pE(2,1)],[pE(3,1)],'b.')
@@ -59,12 +66,19 @@ hold off
 figure()
 for i = 1:length(qi)
     subplot(3,2,i)
-    plot(t, qd(i,:), 'b', 'DisplayName', 'q')
+    plot(t, ones(1,n)*q_min(i,1), 'r', 'DisplayName', 'q_{min}')
     hold on
+    plot(t, ones(1,n)*q_max(i,1), 'm', 'DisplayName', 'q_{max}')
+    plot(t, qd(i,:), 'b', 'DisplayName', 'q')
     ylabel(['coordonée articulaire ', num2str(i,'%1d'), ' (rad)'])
     xlabel('time (s)')
-    plot(t, ones(1,n)*q_min(i,1), 'r', 'DisplayName', 'q_{min}')
-    plot(t, ones(1,n)*q_max(i,1), 'm', 'DisplayName', 'q_{max}')
     legend()
     hold off
 end
+
+figure()
+plot(t,erreur);
+ylabel(['erreur (m)'])
+xlabel('time (s)')
+
+

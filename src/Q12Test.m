@@ -2,7 +2,9 @@
 clear;
 clc;
 
-q = [-pi/2; 0; -pi/2; -pi/2; -pi/2; -pi/2];
+q = zeros(6,1);
+% Essayer des valeurs différents de q
+% q = [-pi/2; 0; -pi/2; -pi/2; -pi/2; -pi/2];
 
 [JvG, JwG] = CalculJacobienneCentresMasse(q);
 
