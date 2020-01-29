@@ -2,6 +2,7 @@ function c=CalculCoupleCoriolisCentrifuge(q,dq_dt)
 
     % Initialisation
     c=zeros(size(q))';
+    iI = zeros(3,3,6);
 
     % Paramètres
     m=[15 10 1 7 1 0.5]';
