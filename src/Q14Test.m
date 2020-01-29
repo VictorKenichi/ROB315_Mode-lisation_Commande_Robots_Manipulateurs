@@ -3,8 +3,8 @@ clear;
 clc;
 
 %% Paramètres à régler
-k_stoq = 1000;                  % numéro max d'itérations de la recherche stocastique
-k_grad = 30;                    % numéro max d'itérations de la recherche pour gradiant
+k_stoq = 10000;                  % numéro max d'itérations de la recherche stocastique
+k_grad = 1000;                    % numéro max d'itérations de la recherche pour gradiant
 alpha_step = 3;                 % taux d'apprentissage initial
 tol = 1e-6;                     % tolérance
 affiche = true;
