@@ -25,7 +25,6 @@ qd = zeros(length(qi),m);
 Xd = zeros(3,m);
 qd(:,1) = qi;
 Xd(:,1) = Xdi;
-error = zeros(m);
 v = zeros(length(qi),1);
 [alpha, d, theta, r] = InitValuesTP1(qd(:,1));
 
@@ -52,7 +51,6 @@ for i = 2:m
     qd(:,i)  = qd(:,i-1) +  dq_dt * Te;
     [alpha, d, theta, r] = InitValuesTP1(qd(:,i));
     g0E  = CalculMGD(alpha, d, theta, r);
-    Xd_hat   = g0E(1:3, 4);
 end
 
 end

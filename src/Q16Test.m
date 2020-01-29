@@ -1,4 +1,4 @@
-%% Question 14
+%% Question 16
 clear;
 clc;
 
@@ -13,5 +13,5 @@ affiche = true;
 q_min = [-pi; -pi/2;  -pi;  -pi; -pi/2;  -pi];   % coordonnées articulaires minimales
 q_max = [  0;  pi/2; pi/2; pi/2;  pi/2; pi/2];   % coordonnées articulaires maximales
 
-[alpha_min, alpha_max, q_alpha_min, q_alpha_max] = CalculBornesMatriceInertie(q_min, q_max, k_stoq, k_grad, alpha_step, tol, affiche)
+[gb, qb] = CalculBornCoupleGravite(q_min, q_max, k_stoq, k_grad, alpha_step, tol, affiche)
 

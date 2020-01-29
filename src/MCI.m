@@ -12,7 +12,7 @@ function qd = MCI(Xdi, Xdf, V, Te, qi)
 
 %% Paramètres :
 epsilon_x = 1e-3;
-alpha_step = 5e-4;
+alpha_step = 5e-3;
 k_max = 1000;
 
 n = round(norm(Xdf - Xdi)/(V*Te));
@@ -21,14 +21,11 @@ qd = zeros(length(qi),n);
 Xd = zeros(3,n);
 qd(:,1) = qi;
 Xd(:,1) = Xdi;
-error = zeros(n);
 
 for i = 2:n
     Xd(:,i) = Xd(:,i-1) + dX_dt * Te;
     qd(:,i) = MGI(Xd(:,i), qd(:,i-1), k_max, epsilon_x, alpha_step);
     [alpha, d, theta, r] = InitValuesTP1(qd(:,i));
-    g0E = CalculMGD(alpha, d, theta, r);
-    Xd_hat = g0E(1:3,4);
 end
 
 end
