@@ -7,7 +7,7 @@ k_stoq = 10000;                  % numéro max d'itérations de la recherche stoca
 k_grad = 1000;                    % numéro max d'itérations de la recherche pour gradiant
 alpha_step = 3;                 % taux d'apprentissage initial
 tol = 1e-6;                     % tolérance
-affiche = true;
+affiche = false;
 
 %% Valeurs de q
 q_min = [-pi; -pi/2;  -pi;  -pi; -pi/2;  -pi];   % coordonnées articulaires minimales
