@@ -42,9 +42,9 @@ end
 
 % Afficher l'ellipsoid
 if s == 'i'
-    surf(xelps, yelps, zelps, 'EdgeColor', 'm', 'FaceColor', 'none')
-elseif s == 'f'
     surf(xelps, yelps, zelps, 'EdgeColor', 'y', 'FaceColor', 'none')
+elseif s == 'f'
+    surf(xelps, yelps, zelps, 'EdgeColor', 'm', 'FaceColor', 'none')
 else
     surf(xelps, yelps, zelps, 'EdgeColor', 'interp', 'FaceColor', 'none')
 end

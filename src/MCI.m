@@ -11,9 +11,9 @@ function qd = MCI(Xdi, Xdf, V, Te, qi)
 % qd          - 6xn - coordonnées articulaires désirées
 
 %% Paramètres :
-epsilon_x = 1e-3;
-alpha_step = 5e-3;
-k_max = 1000;
+epsilon_x = 0.001;
+alpha_step = 0.005;
+k_max = 100;
 
 n = round(norm(Xdf - Xdi)/(V*Te));
 dX_dt = ((Xdf - Xdi) * V)/norm(Xdf - Xdi);

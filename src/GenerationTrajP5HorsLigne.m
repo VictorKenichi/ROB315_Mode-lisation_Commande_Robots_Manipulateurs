@@ -1,7 +1,7 @@
 function [qd, tf] = GenerationTrajP5HorsLigne(qi, qf, dq_dti, dq_dtf, d2q_dt2i, d2q_dt2f, ka, Te)
 %%% Calcule les coordonnées articulaires désirées qd pour réaliser une
 %%% trajectoire entre les positions Xdi et Xdf en respectant les consignes
-%%% de accélérations.
+%%% de accélérations avec une trajectoire polymoniale de dégré 5.
 % Arguments :
 % qi          - 6x1 - coordonnées articulaires initiales
 % qf          - 6x1 - coordonnées articulaires finales
@@ -9,7 +9,7 @@ function [qd, tf] = GenerationTrajP5HorsLigne(qi, qf, dq_dti, dq_dtf, d2q_dt2i, 
 % dq_dtf      - 6x1 - vitesses articulaires finales
 % d2q_dt2i    - 6x1 - accélérations articulaires initiales
 % d2q_dt2i    - 6x1 - accélérations articulaires finales
-% ka          - 6x1 - rad/s^2 - accélérations articulaires initiales
+% ka          - 6x1 - rad/s^2 - accélérations articulaires maximales
 % Te          - s - pas de temps
 % Sortie :
 % qd          - 6xn - coordonnées articulaires désirées

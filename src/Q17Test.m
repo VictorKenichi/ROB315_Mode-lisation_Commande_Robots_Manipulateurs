@@ -20,6 +20,6 @@ else
     q_0 = qi;
     dq_dt_0 = [0.5; 1.0; -0.5; 0.5; 1.0; -0.5];
     
-    sim('Modele_dynamique_direct', 'ReturnWorkspaceOutputs', 'on');
+    SimOutput = sim('Modele_dynamique_direct', 'ReturnWorkspaceOutputs', 'on');
 
 end

@@ -5,8 +5,8 @@ clc;
 %% Paramètres
 V  = 1;                                                  % 1 m/s
 Te = 1e-3;                                               % 0.001 s
-qi = [    0; 0.30; -1.26; -1.26; -1.16; -1.26];          % coordonnées articulaires initiales
-qf = [-1.20; 0.25; -1.10; -1.35; -1.20; -1.30];          % exemple de coordonnées articulaires finales
+qi = [-pi/2;    0;  -pi/2; -pi/2; -pi/2; -pi/2];          % coordonnées articulaires initiales
+qf = [    0; pi/4;      0;  pi/2;  pi/2; 0];              % coordonnées articulaires finales
 
 % qi = [0.3; 0.2; 0.3; -0.2; 0.25; -0.3];
 % qf = qi + 0.05*[1; -1; 1; -1; 1; 1];
@@ -20,13 +20,12 @@ q_min = [-pi; -pi/2;  -pi;  -pi; -pi/2;  -pi];           % coordonnées articulai
 q_max = [  0;  pi/2; pi/2; pi/2;  pi/2; pi/2];           % coordonnées articulaires maximales
 
 %% Calculate consignes qd
-qd = MCIbutees(Xdi, Xdf, V, Te, qi, q_min, q_max, 1000);
-
+qd = MCIbutees(Xdi, Xdf, V, Te, qi, q_min, q_max, 2);
 
 %% Afficher la trajectoire
 [~, n] = size(qd);
 
-figure()
+figure(1)
 VisualisationRepere(qd(:,1), 0.1, 'i')
 hold on
 VisualisationChaine(qd(:,1))
@@ -63,12 +62,12 @@ plot3([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)],'g*')
 text([Xdf(1,1)],[Xdf(2,1)],[Xdf(3,1)], '     X_{df}')
 hold off
 
-figure()
+figure(2)
 for i = 1:length(qi)
     subplot(3,2,i)
-    plot(t, ones(1,n)*q_min(i,1), 'r', 'DisplayName', 'q_{min}')
+    plot(t, ones(1,n)*q_min(i,1), 'r--', 'DisplayName', 'q_{min}')
     hold on
-    plot(t, ones(1,n)*q_max(i,1), 'm', 'DisplayName', 'q_{max}')
+    plot(t, ones(1,n)*q_max(i,1), 'r--', 'DisplayName', 'q_{max}')
     plot(t, qd(i,:), 'b', 'DisplayName', 'q')
     ylabel(['coordonée articulaire ', num2str(i,'%1d'), ' (rad)'])
     xlabel('time (s)')
@@ -76,7 +75,7 @@ for i = 1:length(qi)
     hold off
 end
 
-figure()
+figure(3)
 plot(t,erreur);
 ylabel(['erreur (m)'])
 xlabel('time (s)')

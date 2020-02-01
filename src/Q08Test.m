@@ -2,7 +2,7 @@ clear;
 clc;
 
 % Paramètres
-cas = 1;
+cas = 2;
 
 % Cas 1
 if cas == 1
@@ -46,11 +46,13 @@ Xdf  = g_0E(1:3, 4)
 errori = norm(Xd - Xdi)
 errorf = norm(Xd - Xdf)
 
-VisualisationRepere(q0, 0.01)
+%% Affichage
+figure(1)
+VisualisationRepere(q0, 0.05, 'i')
 hold on
 VisualisationChaine(q0)
 hold on
-VisualisationRepere(qf, 0.01)
+VisualisationRepere(qf, 0.05, 'f')
 hold on
 VisualisationChaine(qf)
 hold on

@@ -8,11 +8,8 @@ function A = CalculMatriceInertie(q)
 A = zeros(6,6);
 [alpha, d, theta, r] = InitValuesTP1(q);
 g0i = eye(4);
-OGi = zeros(3,1);
 
 %% Initialization des paramètres
-% Coordonnées des centres de masse
-pOi = zeros(3,6);
 % Coordonnées des centres de masse
 G = zeros(3,6);
 G(3,1) = -0.25;
@@ -62,7 +59,7 @@ r_red = [100, 100, 100, 70, 70, 70];  % Rapport de réduction
 for i = 1:6
     g0i = g0i * CalculTransformationElem(alpha(i,1), d(i,1), theta(i,1), r(i,1));
     R0i = g0i(1:3,1:3);
-    % Changement de repère des Tenseurs d'Inertie
+    % Changement de repère des Tenseurs d'Inertie de Ri à R0
     I(3*(i-1)+1:3*i,:) = R0i * I(3*(i-1)+1:3*i,:) * R0i';
     % Calcul de la Matrice d'Inertie
     A = A + m(i) * JvG(3*(i-1)+1:3*i,:)' * JvG(3*(i-1)+1:3*i,:) + ...

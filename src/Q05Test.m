@@ -6,6 +6,7 @@ clc;
 qi = [-pi/2; 0;    -pi/2; -pi/2; -pi/2; -pi/2];
 qf = [0;     pi/4; 0;     pi/2;   pi/2; 0];
 
+figure(1)
 VisualisationRepere(qi, 1, 'i')
 hold on
 
