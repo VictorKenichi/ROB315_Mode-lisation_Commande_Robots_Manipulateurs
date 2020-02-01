@@ -1,5 +1,5 @@
 function [alpha, d, theta, r] = InitValuesTP1(q)
-%%% Crée la matrice de paramètres du robot
+%%% Crée la matrice de paramètres du robot selon la convention de Khalil-Klein?nger
 % Arguments :
 % q           - 6x1 - coordonnées articulaires
 % Sortie :

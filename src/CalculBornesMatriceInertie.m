@@ -58,7 +58,7 @@ Q_max_t = zeros(6, k_stoq + 2 * k_grad);
 Q_min_t = zeros(6, k_stoq + 2 * k_grad);
 
 
-%%   Recherche stocastique des valeurs initiales
+%%   Recherche stochastique des valeurs initiales
 %  afin d'éviter les minimales et maximales locaux
 for k = 1:k_stoq
     q_rand = rand(6,1) .* (q_max - q_min) + q_min;

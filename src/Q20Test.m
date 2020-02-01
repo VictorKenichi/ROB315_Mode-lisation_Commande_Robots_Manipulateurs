@@ -4,23 +4,36 @@ clc;
 
 %% Teste le modèle simulink
 q_di = [-1.00; 0.00; -1.00; -1.00; -1.00; -1.00];   % coordonnées articulaires initiales
-q_df = [ 0.00; 1.00;  0.00;  0.00;  0.00;  0.00];
+q_df = [ 0.00; 1.00;  0.00;  0.00;  0.00;  0.00];   % coordonnées articulaires finales
 
 dq_dt_0 = zeros(6,1);
 q_0     = q_di;
 
-Kp = 5 * diag([1, 1, 1, 1, 1, 1]);
-Kd = 3 * diag([1, 1, 1, 1, 1, 1]);
-Tsimu = 30;
+Kp = diag([59.6, 38.225, 204.4, 190, 190, 190]);
+Kd = diag([176, 157.573, 246.1, 227.5, 227.5, 227.5]);
 
+Tsimu = 10;                               % s - temps de simulation
+e_max = 0.05;                             % rad - erreur maximal
+tau_max = 5;                              % N.m - couple maximal des moteurs
+red = [100; 100; 100; 70; 70; 70];        % rapport de réduction
+
+%% Lancer une simulation
 SimOutput = sim('Commande_en_position', 'ReturnWorkspaceOutputs', 'on');
 
-t  = SimOutput.q.Time';      % nx1 - temps
-q  = SimOutput.q.Data';      % 6xn - coordonnées articulaires
-qc = SimOutput.qc.Data';     % 6xn - coordonnées articulaires désirées
+t  = SimOutput.q.Time';         % nx1 - temps
+q  = SimOutput.q.Data';         % 6xn - coordonnées articulaires
+qc = SimOutput.qc.Data';        % 6xn - coordonnées articulaires désirées
+Gamma = SimOutput.Gamma.Data';  % 6xn - couple de actioneurs
+e  = qc - q;                    % 6xn - erreur de coordonnées articulaires
 n  = length(t);
 
+Gamma_m = zeros(6,n);
+for i=1:n
+    Gamma_m(:,i) = Gamma(:,i) .* red .^ (-1);
+end
+
 %% Affichage
+
 figure(1)
 
 % Point de départ
@@ -67,7 +80,6 @@ hold on
 VisualisationChaine(q(:,n))
 hold off
 
-
 figure(2)
 for i = 1:6
     subplot(3,2,i)
@@ -75,6 +87,35 @@ for i = 1:6
     hold on
     plot(t, q(i,:), 'b', 'DisplayName', 'q')
     ylabel(['coordonée articulaire ', num2str(i,'%1d'), ' (rad)'])
+    xlabel('time (s)')
+    hold off
+    legend()
+end
+
+figure(3)
+for i = 1:6
+    subplot(3,2,i)
+    plot(t, e_max * ones(1,n), 'm--', 'DisplayName', 'e_{max}')
+    hold on
+    plot(t, - e_max * ones(1,n), 'm--', 'DisplayName', '-e_{max}')
+    hold on
+    plot(t, e(i,:), 'r', 'DisplayName', 'e')
+    ylabel(['erreur de la coordonée articulaire ', num2str(i,'%1d'), ' (rad)'])
+    xlabel('time (s)')
+    hold off
+    legend()
+end
+
+
+figure(4)
+for i = 1:6
+    subplot(3,2,i)
+    plot(t, tau_max * ones(1,n), 'r--', 'DisplayName', 'tau_{max}')
+    hold on
+    plot(t, - tau_max * ones(1,n), 'r--', 'DisplayName', '-tau_{max}')
+    hold on
+    plot(t, Gamma_m(i,:), 'g', 'DisplayName', 'tau')
+    ylabel(['couple du moteur ', num2str(i,'%1d'), ' (N.m)'])
     xlabel('time (s)')
     hold off
     legend()
